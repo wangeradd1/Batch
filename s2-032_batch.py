@@ -9,7 +9,7 @@ headers = {"User-Agent":"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 
 
 config = {
 'host':'127.0.0.1',
-'user':'toor',
+'user':'user',
 'password':'changeme',
 'port':'3306',
 'database':'google'
