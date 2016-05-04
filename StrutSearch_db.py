@@ -25,7 +25,7 @@ def url_cut(url):
         if matched:
             replace = do_replace.search(matched.group())
             if replace:
-                newurl = do_replace.sub('.action',matched.group())
+                newurl = do_replace.sub('.do',matched.group())
                 return newurl
             else:
                 return matched.group()
