@@ -7,7 +7,7 @@ import sys
 
 url_action = re.compile(r'.*?//.*?/.*?\.action')
 url_do = re.compile(r'.*?//.*?/.*?\.do')
-url_replace = re.compile(r'.*?//.*?/.*?!.*?\.action')
+url_replace = re.compile(r'!.*?\.action')
 
 def url_cut(url):
     matched = None
