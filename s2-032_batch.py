@@ -17,7 +17,7 @@ config = {
    
 def check(id,url):
     try:
-        res = requests.get(url + payload_check,headers = headers)
+        res = requests.get(url + payload_check,headers = headers,timeout = 10)
         if res.status_code == 200:
             if res.content.strip() == "ohthatsgood":
                 print url
@@ -55,6 +55,7 @@ try:
         try:
             if (count % 100) == 0 or count == final:
                 for thread in threads:
+                    thread.setDaemon(True)
                     thread.start()
                 for thread in threads:
                     thread.join()
@@ -64,6 +65,6 @@ try:
         except Exception,e:
             print e
 except KeyboardInterrupt:
-    print count + " urls finished!"
+    print str(count) + " urls finished!"
 
-print count + "urls finished!"  
+print str(count) + "urls finished!"  
