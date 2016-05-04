@@ -7,28 +7,34 @@ import sys
 
 url_action = re.compile(r'.*?//.*?/.*?\.action')
 url_do = re.compile(r'.*?//.*?/.*?\.do')
-url_replace = re.compile(r'!.*?\.action')
+action_replace = re.compile(r'!.*?\.action')
+do_replace = re.compile(r'!.*?\.do')
 
 def url_cut(url):
-    matched = None
     if url_action.search(url):
         matched = url_action.search(url)
         if matched:
-            replace = url_replace.search(matched.group())
+            replace = action_replace.search(matched.group())
             if replace:
-                newurl=url_replace.sub('.action',matched.group())
+                newurl = action_replace.sub('.action',matched.group())
                 return newurl
             else:
                 return matched.group()
     elif url_do.search(url):
         matched = url_do.search(url)
-        return matched.group()
+        if matched:
+            replace = do_replace.search(matched.group())
+            if replace:
+                newurl = do_replace.sub('.action',matched.group())
+                return newurl
+            else:
+                return matched.group()
     else:
         return None
         
 config = {
-'host':'192.168.149.136',
-'user':'toor',
+'host':'127.0.0.1',
+'user':'nobody',
 'password':'changeme',
 'port':'3306',
 'database':'google'
@@ -40,7 +46,9 @@ if len(sys.argv) ==2:
         con = mysql.connector.connect(**config)
         cursor=con.cursor()
         for url in search(keywords,tld = 'hk',lang = 'zh',num = 100,stop = 1000):
+            print url
             format_url = url_cut(url)
+            print format_url
             if format_url:
                 sqlstr = "insert into struts2(url,format_url) values (\'{0}\',\'{1}\')".format(url,format_url)
                 cursor.execute(sqlstr)
