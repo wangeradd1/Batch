@@ -7,7 +7,7 @@ from google import search
 
 url_action = re.compile(r'.*?//.*?/.*?\.action')
 url_do = re.compile(r'.*?//.*?/.*?\.do')
-url_replace = re.compile(r'.*?//.*?/.*?!.*?\.action')
+url_replace = re.compile(r'!.*?\.action')
 
 headers = {"User-Agent":"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36"}
 
