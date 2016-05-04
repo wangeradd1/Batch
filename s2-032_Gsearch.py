@@ -7,24 +7,30 @@ from google import search
 
 url_action = re.compile(r'.*?//.*?/.*?\.action')
 url_do = re.compile(r'.*?//.*?/.*?\.do')
-url_replace = re.compile(r'!.*?\.action')
+action_replace = re.compile(r'!.*?\.action')
+do_replace = re.compile(r'!.*?\.do')
 
 headers = {"User-Agent":"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36"}
 
 def url_cut(url):
-    matched = None
     if url_action.search(url):
         matched = url_action.search(url)
         if matched:
-            replace = url_replace.search(matched.group())
+            replace = action_replace.search(matched.group())
             if replace:
-                newurl=url_replace.sub('.action',matched.group())
+                newurl = action_replace.sub('.action',matched.group())
                 return newurl
             else:
                 return matched.group()
     elif url_do.search(url):
         matched = url_do.search(url)
-        return matched.group()
+        if matched:
+            replace = do_replace.search(matched.group())
+            if replace:
+                newurl = do_replace.sub('.do',matched.group())
+                return newurl
+            else:
+                return matched.group()
     else:
         return url
 
