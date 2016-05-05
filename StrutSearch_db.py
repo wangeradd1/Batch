@@ -52,7 +52,7 @@ if len(sys.argv) ==2:
             if format_url:
                 sqlstr = "insert into struts2(url,format_url) values (\'{0}\',\'{1}\')".format(url,format_url)
                 cursor.execute(sqlstr)
-        con.commit()
+                con.commit()
     except mysql.connector.Error as e:
         print "Error: {}".format(e)
         exit()
