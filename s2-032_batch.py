@@ -36,7 +36,7 @@ def check(id,url):
     except:
         return      
 
-selectstr = "select id,format_url from struts2"
+selectstr = "select id,format_url from struts2 group by format_url"
 con = mysql.connector.connect(**config)
 cursor = con.cursor()
 cursor.execute(selectstr)
